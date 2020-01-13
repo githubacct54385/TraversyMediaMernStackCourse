@@ -1,0 +1,2 @@
+# TraversyMediaMernStackCourse
+Following the course
