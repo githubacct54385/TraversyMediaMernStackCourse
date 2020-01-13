@@ -1,2 +1,3 @@
 # TraversyMediaMernStackCourse
-Following the course
+
+## Following the course from Travery Media
