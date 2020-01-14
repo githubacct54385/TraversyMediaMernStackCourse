@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://user5275372:LFwwVnqxNWCxpLGH@nodecluster-udwpi.azure.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://user5275372:LFwwVnqxNWCxpLGH@nodecluster-udwpi.azure.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "23e8638c376c41929136a1a17980ee25"
 }
