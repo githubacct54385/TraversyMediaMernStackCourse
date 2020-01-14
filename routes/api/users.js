@@ -33,7 +33,9 @@ router.post(
       // see if the user exists
       let user = await User.findOne({ email });
       if (user) {
-        res.status(400).json({ errors: [{ msg: "User already exists." }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exists." }] });
       }
       // get users gravatar
       const avatar = gravatar.url(email, {
@@ -49,15 +51,21 @@ router.post(
         password
       });
 
-      // encrypt users password
+      // encrypt users pw
+      const salt = await bcrypt.genSalt(10);
+
+      // hash pw
+      user.password = await bcrypt.hash(password, salt);
+
+      // save to db
+      await user.save();
+
       // return json webtoken
-      console.log(req.body);
+      res.send("user registered");
     } catch (err) {
       console.error(err.message);
       res.status(500).send(`server error`);
     }
-
-    res.send(`user route`);
   }
 );
 
