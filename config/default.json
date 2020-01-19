@@ -1,6 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://user5275372:LFwwVnqxNWCxpLGH@nodecluster-udwpi.azure.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "23e8638c376c41929136a1a17980ee25",
-  "githubClientId": "532c14e0bf04f0e83823",
-  "githubSecret": "01ec90908e22a650585e9b445856a51a3fb8581c"
-}
