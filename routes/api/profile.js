@@ -159,7 +159,7 @@ router.get("/user/:user_id", async (req, res) => {
 // @access      Private
 router.delete("/", auth, async (req, res) => {
   try {
-    // todo remove users posts
+    // @todo remove users posts
 
     // remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
@@ -173,5 +173,69 @@ router.delete("/", auth, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+// @route       PUT api/profile/experience
+// @desc        add profile experience
+// @access      Private
+router.put(
+  "/experience",
+  [
+    auth,
+    [
+      check("title", "Title is required")
+        .not()
+        .isEmpty(),
+      check("company", "Company is required")
+        .not()
+        .isEmpty(),
+      check("from", "From Date is required")
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description
+    } = req.body;
+
+    const newExp = {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description
+    };
+
+    try {
+      // find the profile
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      // add the new experience to the front of the array
+      profile.experience.unshift(newExp);
+
+      // save it
+      await profile.save();
+
+      // return the updated profile
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 module.exports = router;
