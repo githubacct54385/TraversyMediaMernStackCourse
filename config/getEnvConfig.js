@@ -17,15 +17,17 @@ function getProductionConfig(configName) {
     throw "Production Config Name cannot be null or undefined or an empty string.";
   }
 
-  console.log(`Attempting to get production config value ${configName}`);
-
   switch (configName) {
     case "mongoURI":
-      console.log(process.env.mongoURI);
       return process.env.mongoURI;
     case "jwtSecret":
-      console.log(process.env.jwtSecret);
       return process.env.jwtSecret;
+    case "githubClientId":
+      return process.env.githubClientId;
+    case "githubSecret":
+      return process.env.githubSecret;
+    default:
+      throw "Unknown Environment Variable!  Please add to heroku.";
   }
 }
 
