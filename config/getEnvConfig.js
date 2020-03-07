@@ -16,6 +16,9 @@ function getProductionConfig(configName) {
   if (configName === null || configName === undefined || configName === "") {
     throw "Production Config Name cannot be null or undefined or an empty string.";
   }
+
+  console.log(`Attempting to get production config value ${configName}`);
+
   switch (configName) {
     case "mongoURI":
       return process.env.mongoURI;
