@@ -21,7 +21,11 @@ function getProductionConfig(configName) {
 
   switch (configName) {
     case "mongoURI":
+      console.log(process.env.mongoURI);
       return process.env.mongoURI;
+    case "jwtSecret":
+      console.log(process.env.jwtSecret);
+      return process.env.jwtSecret;
   }
 }
 
