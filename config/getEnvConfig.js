@@ -2,6 +2,8 @@ const config = require("config");
 
 function getEnvConfig(configName) {
   // check runtime
+  console.log("Printing node env...");
+  console.log(process.env.NODE_ENV);
   const runtime = process.env.NODE_ENV;
   if (runtime === "production") {
     // get from heroku env variables
