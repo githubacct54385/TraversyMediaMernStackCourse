@@ -1,5 +1,9 @@
 const config = require("config");
 
+/**
+ * Determines config destination to use
+ * Choices are either production or local config
+ */
 function getEnvConfig(configName) {
   // check runtime
   const runtime = process.env.NODE_ENV;
@@ -12,6 +16,10 @@ function getEnvConfig(configName) {
   }
 }
 
+/**
+ * Gets config variables from environment variables.
+ * This should only be done when in production.
+ */
 function getProductionConfig(configName) {
   if (configName === null || configName === undefined || configName === "") {
     throw "Production Config Name cannot be null or undefined or an empty string.";
