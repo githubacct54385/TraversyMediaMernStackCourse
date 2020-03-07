@@ -18,7 +18,7 @@ function getProductionConfig(configName) {
   }
   switch (configName) {
     case "mongoURI":
-      return process.env.MongoUri;
+      return process.env.mongoURI;
   }
 }
 
