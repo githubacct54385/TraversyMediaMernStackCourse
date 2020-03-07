@@ -1,6 +1,6 @@
 const express = require("express");
 const request = require("request");
-const config = require("config");
+const getEnvConfig = require("../../config/getEnvConfig");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const Profile = require("../../models/Profile");
@@ -376,9 +376,9 @@ router.get("/github/:username", (req, res) => {
     const options = {
       uri: `https://api.github.com/users/${
         req.params.username
-      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
+      }/repos?per_page=5&sort=created:asc&client_id=${getEnvConfig(
         "githubClientId"
-      )}&client_secret=${config.get("githubSecret")}`,
+      )}&client_secret=${getEnvConfig("githubSecret")}`,
       method: "GET",
       headers: { "user-agent": "node.js" }
     };
